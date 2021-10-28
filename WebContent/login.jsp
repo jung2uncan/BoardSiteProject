@@ -56,6 +56,7 @@
 					</div>
 					<input type="submit" class="btn btn-primary form-control" value="로그인"/> 
 				</form>
+			</div>
 		</div>
 		<div class="col-lg-4"></div>
 	</div>
