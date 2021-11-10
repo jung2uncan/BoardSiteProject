@@ -1,10 +1,12 @@
 package boardSite;
 
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class BoardSiteDAO {
 	private Connection conn;
@@ -12,13 +14,14 @@ public class BoardSiteDAO {
 	
 	//생성자는 인스턴스를 생성할 때 자동으로 실행되는 부분
 	public BoardSiteDAO() {
+		//절대경로
+		String resource = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
+
+		Properties properties = new Properties();
 		try {
-			String dbURL ="jdbc:mysql://localhost:3306/BOARDSITE";
-			String dbID = "root";
-			String dbPW = "root계정패스워드";
-			
-			Class.forName("com.mysql.cj.jdbc.Driver");	 //MySQL에 접속할 수 있도록 하는 매개체(라이브러리)
-			conn = DriverManager.getConnection(dbURL, dbID, dbPW); //매개변수를 통해 DB에 접속할 수 있도록 함. 접속이 완료되면 conn객체에 접속정보가 담기게 됨.
+			properties.load(new FileReader(resource));
+			Class.forName(properties.getProperty("driver"));	 //MySQL에 접속할 수 있도록 하는 매개체(라이브러리)
+			conn = DriverManager.getConnection(properties.getProperty("dbURL"), properties.getProperty("dbID"), properties.getProperty("dbPW")); //매개변수를 통해 DB에 접속할 수 있도록 함. 접속이 완료되면 conn객체에 접속정보가 담기게 됨.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
