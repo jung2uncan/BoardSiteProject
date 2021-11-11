@@ -15,11 +15,11 @@ public class BoardSiteDAO {
 	//생성자는 인스턴스를 생성할 때 자동으로 실행되는 부분
 	public BoardSiteDAO() {
 		//절대경로
-		String resource = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
-
+		String filePath = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
 		Properties properties = new Properties();
+		
 		try {
-			properties.load(new FileReader(resource));
+			properties.load(new FileReader(filePath));
 			Class.forName(properties.getProperty("driver"));	 //MySQL에 접속할 수 있도록 하는 매개체(라이브러리)
 			conn = DriverManager.getConnection(properties.getProperty("dbURL"), properties.getProperty("dbID"), properties.getProperty("dbPW")); //매개변수를 통해 DB에 접속할 수 있도록 함. 접속이 완료되면 conn객체에 접속정보가 담기게 됨.
 		} catch (Exception e) {

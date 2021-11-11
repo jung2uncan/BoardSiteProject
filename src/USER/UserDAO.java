@@ -1,7 +1,10 @@
 package USER;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,15 +18,12 @@ public class UserDAO {
 	
 	//생성자는 인스턴스를 생성할 때 자동으로 실행되는 부분
 	public UserDAO() throws IOException {
-		//상대경로
-		//String resource = "../../config/db.properties"; 
-		
 		//절대경로
-		String resource = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
+		String filePath = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
 		Properties properties = new Properties();
 		
 		try {
-			properties.load(new FileReader(resource));
+			properties.load(new FileReader(filePath));
 			Class.forName(properties.getProperty("driver"));	 //MySQL에 접속할 수 있도록 하는 매개체(라이브러리)
 			conn = DriverManager.getConnection(properties.getProperty("dbURL"), properties.getProperty("dbID"), properties.getProperty("dbPW")); //매개변수를 통해 DB에 접속할 수 있도록 함. 접속이 완료되면 conn객체에 접속정보가 담기게 됨.
 		} catch (Exception e) {
