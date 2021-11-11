@@ -18,10 +18,9 @@ public class UserDAO {
 	
 	//생성자는 인스턴스를 생성할 때 자동으로 실행되는 부분
 	public UserDAO() throws IOException {
-		//절대경로
-		String filePath = "D:/jungeun/eclipse-workspace/BoardSite/config/db.properties"; 
+		String filePath = "D:/XXXXXX/eclipse-workspace/BoardSite/config/db.properties"; 
 		Properties properties = new Properties();
-		
+
 		try {
 			properties.load(new FileReader(filePath));
 			Class.forName(properties.getProperty("driver"));	 //MySQL에 접속할 수 있도록 하는 매개체(라이브러리)
